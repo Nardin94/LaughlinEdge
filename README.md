@@ -11,7 +11,7 @@ Main features:
         edgeMC::spectrum_compute
 2) Edge dynamic structure factor
         edgeMC::dsf_compute
-3) Edge spectral function
+3) Spectral function
         (coming soon)
 4) Matrix elements of an excitation
         edgeMC::excitationResponse_compute
