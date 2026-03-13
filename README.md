@@ -13,9 +13,11 @@ Main features:
         edgeMC::dsf_compute
 3) Spectral function
         (coming soon)
-4) Matrix elements of an excitation
+4) Occupation numbers
+        (coming soon)   
+5) Matrix elements of an excitation
         edgeMC::excitationResponse_compute
-5) Time evolution in response to an excitation
+6) Time evolution in response to an excitation
         timeEvolution::edgeDensityResponse_compute
 
 
