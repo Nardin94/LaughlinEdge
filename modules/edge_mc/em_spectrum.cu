@@ -1,5 +1,5 @@
-#include "./edge_montecarlo.h"
-#include "./generalized_eigenproblem.h"
+#include "../edge_montecarlo.h"
+#include "../generalized_eigenproblem.h"
 
 #include <filesystem>
 #include <string>

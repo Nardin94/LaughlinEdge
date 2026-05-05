@@ -18,7 +18,9 @@ int ansatzMaxDegree = 10; // With this we can arrive up to L=10
 int ansatzMaxPartitionSize = 5; // The longest partition at a given L has K = floor[ (sqrt(1+8L)-1)/2 ] distinct elements. With K=4 we can cover all the L up to 15 (excluded)
 int ansatzSubspaceDimension = 50; // The size of the edge Hilbert space should be smaller than this parameter
 
-int ansatzMultipletSize = 5;
+int ansatzMultipletSize = 5; // The number of angular momentum sectors considered when solving the dynamics
+
+int ansatzMaxAngularMomentum = 15; // Momenta to explore after the Fermi point at m(N-1) when looking at the occupation numbers
 
 void generate_config_file(){
     std::ofstream out("./modules/sys_params.h");
@@ -28,6 +30,8 @@ void generate_config_file(){
 	double DCl = 2.*RCl;
 	double RCl_reciprocal = 1. / RCl;
 	double R0_reciprocal = 2./RCl;		
+
+    int angularMomentumCutoff = inverseFilling * (particlesNumber-1) + ansatzMaxAngularMomentum;
 
     // 2. 
     out << std::fixed << std::setprecision(6);
@@ -51,6 +55,9 @@ void generate_config_file(){
     out << "    __device__ constexpr int ansatzSubspaceDimension = " << ansatzSubspaceDimension << ";\n\n";
 
     out << "    __device__ constexpr int ansatzMultipletSize = " << ansatzMultipletSize << ";\n\n";
+
+    out << "    __device__ constexpr int ansatzMaxAngularMomentum = " << ansatzMaxAngularMomentum << ";\n";
+    out << "    __device__ constexpr int angularMomentumCutoff = " << angularMomentumCutoff << ";\n\n";
 
     out << "}\n\n";
 

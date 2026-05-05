@@ -1,4 +1,4 @@
-#include "./generalized_eigenproblem.h"
+#include "../generalized_eigenproblem.h"
 
 #include <complex>
 #include <Eigen/Dense>

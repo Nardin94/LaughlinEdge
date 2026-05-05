@@ -1,6 +1,6 @@
-#include "./complex_numbers.h"
-#include "./tensors.h"
-#include "./integer_partitions.h"
+#include "../complex_numbers.h"
+#include "../tensors.h"
+#include "../integer_partitions.h"
 
 namespace iparts {
 	////////////////////////////////////////////////////////////////////

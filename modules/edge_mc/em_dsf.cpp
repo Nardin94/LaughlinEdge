@@ -1,4 +1,4 @@
-#include "./edge_montecarlo.h"
+#include "../edge_montecarlo.h"
 
 #include <complex>
 #include <Eigen/Dense>

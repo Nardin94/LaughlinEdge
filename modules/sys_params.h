@@ -19,6 +19,9 @@ namespace sys_params {
 
     __device__ constexpr int ansatzMultipletSize = 5;
 
+    __device__ constexpr int ansatzMaxAngularMomentum = 15;
+    __device__ constexpr int angularMomentumCutoff = 63;
+
 }
 
 #endif

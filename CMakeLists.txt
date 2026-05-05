@@ -16,34 +16,44 @@ set(CMAKE_CUDA_ARCHITECTURES 75)
 set(SOURCES
     ./main.cu
     
-    # Homemade headears implementing vectors, matrices and complex numbers
+    # Headears implementing vectors, matrices and complex numbers...
     ./modules/complex_numbers.h
     ./modules/tensors.h
+    ./modules/factorial_logs.h # ...and a table with the logarithms of factorials
 
     # System parameters as constexpr
     ./modules/sys_params.h
 
     # Integer partitions
     ./modules/integer_partitions.h
-    ./modules/integer_partitions.cu
+    ./modules/partitions/integer_partitions.cu
 
     # Monte Carlo
     ./modules/edge_montecarlo.h
-    ./modules/em_initialize_rnd.cu # Initialization of cuRAND
-    ./modules/em_markovchain.cu # Contains most of the definitions for the montecarlo class
-    ./modules/em_parameters.cu # All the definitions of the parameters class
-    ./modules/em_bisection.cu # Bisects to get the good acceptance
-    ./modules/em_spectrum.cu # Contains spectrum calculation functions
-    ./modules/em_dsf.cu # Contains edge dsf calculation functions
-    ./modules/em_edgeResponse.tpp # Contains excitation matrix elements calculations
+    ./modules/edge_mc/em_initialize_rnd.cu # Initialization of cuRAND
+    ./modules/edge_mc/em_markovchain.cu # Contains most of the definitions for the montecarlo class
+    ./modules/edge_mc/em_parameters.cu # All the definitions of the parameters class
+    ./modules/edge_mc/em_bisection.cu # Bisects to get the good acceptance
+    ./modules/edge_mc/em_metric.cu # Contains metric calculation functions    
+    ./modules/edge_mc/em_spectrum.cu # Contains spectrum calculation functions
+    ./modules/edge_mc/em_dsf.cu # Contains edge dsf calculation functions
+    ./modules/edge_mc/em_edgeResponse.tpp # Contains excitation matrix elements calculations
     
     # Generalized eigensolver
     ./modules/generalized_eigenproblem.h
-    ./modules/generalized_eigenproblem.cpp
+    ./modules/eigensolver/generalized_eigenproblem.cpp
 
     # Dynamics
     ./modules/dynamics.h
-    ./modules/dynamics.cpp
+    ./modules/dynamics/dynamics.cpp
+
+    # Occupation numbers and spectral function
+    ./modules/green_function.h
+    ./modules/green_function/gf_initialize_rnd.cu # Initialization of cuRAND
+    ./modules/green_function/green_function.cu
+    ./modules/green_function/gf_parameters.cu
+    ./modules/green_function/gf_bisection.cu
+    ./modules/green_function/gf_occupation_numbers.cu
 )
 
 add_executable(LaughlinEdge ${SOURCES})

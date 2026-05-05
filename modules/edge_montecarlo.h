@@ -24,9 +24,7 @@ namespace edgeMC{
 		// DYNAMIC STRUCTURE FACTOR
 		complex<double>* fVCg_ff; // Σ Cos(θ)g/f, sampled according to |f|²/<f|f>
 		complex<double>* fVSg_ff; // Σ Sin(θ) g/f, sampled according to |f|²/<f|f>
-		
-		// SPECTRAL FUNCTION
-		
+				
 		// EXCITATION POTENTIAL for the dynamics
 		complex<double>* fUg_ff; // Σ (Uexc)g/f, sampled according to |f|²/<f|f>
 		
@@ -109,6 +107,7 @@ namespace edgeMC{
 			//////////////
 			// "Samplers"
 			__device__ void hamiltonian_sampler( results *dev_results, int samplingEdgeState ); // Compute the matrix elements of H (and the metric) only
+			__device__ void metric_sampler( results *dev_results, int samplingEdgeState ); // Compute the the metric only
 			__device__ void edge_dsf_sampler( results *dev_results, int samplingEdgeState ); // Additionally samples the edge dynamic structure factor
 
 			template<typename Func>
@@ -192,6 +191,16 @@ namespace edgeMC{
 
 	
 	// Compute the spectrum
+	__global__ void mcmc_metric(	curandState *state, 
+									integer_partitions::partition* dev_partitions, int samplingEdgeState,
+									monteCarloParameters params,
+									results *averaged_results );
+
+	cmatrix<double> metric_compute(	monteCarloParameters &params,
+									int angular_momentum_sector,
+									bool saveOutput = false, int fileNumber = 0 ); // By default it does not save
+
+
 	__global__ void mcmc_hamiltonian(	curandState *state, 
 										integer_partitions::partition* dev_partitions, int samplingEdgeState,
 										monteCarloParameters params,
@@ -230,6 +239,6 @@ namespace edgeMC{
 }
 
 // Include templated functions implemetation
-#include "./em_edgeResponse.tpp"
+#include "./edge_mc/em_edgeResponse.tpp"
 
 #endif

@@ -1,11 +1,12 @@
-#include "./edge_montecarlo.h"
+#include "../green_function.h"
 
-namespace edgeMC {
+namespace greenFunctionMC {
 	////////////////////////////////////////////////////////////////////
 	// Acceptance bisection
 
 		__global__ void mcmc_acceptanceBisection(	curandState *state, 
-													integer_partitions::partition* dev_partitions, int samplingEdgeState,
+													integer_partitions::partition* dev_partitions, 
+													int samplingLeftEdgeState, int samplingRightEdgeState,
 													float* dev_acceptances,
 													monteCarloParameters params ){
 			
@@ -25,7 +26,8 @@ namespace edgeMC {
 			// Run the MC
 			montecarlo markovChain = montecarlo( state, tid,
 												 params, 
-												 dev_partitions, samplingEdgeState, 
+												 dev_partitions, 
+												 samplingLeftEdgeState, samplingRightEdgeState,
 												 true
 											   );
 											   
@@ -48,7 +50,8 @@ namespace edgeMC {
 
 		void optimal_step(	monteCarloParameters &params, // Pass by reference the simulation parameters; the MC step will be updated at the end
 							curandState* devState, 
-							integer_partitions::partition* dev_partitions, int samplingEdgeState ){						
+							integer_partitions::partition* dev_partitions, 
+							int samplingLeftEdgeState, int samplingRightEdgeState ){						
 
 			// returns the expected acceptance given a Monte Carlo step newStep
 			auto measureAcceptance = [&]( float newStep ){
@@ -59,7 +62,7 @@ namespace edgeMC {
 				gpuErrchk( cudaMalloc(&dev_acceptances, params.nBlocks * sizeof(float)) );
 				float *host_acceptances = new float[params.nBlocks];
 				
-				mcmc_acceptanceBisection<<<params.nBlocks, params.threadsPerBlock>>>(devState, dev_partitions, samplingEdgeState, dev_acceptances, params);
+				mcmc_acceptanceBisection<<<params.nBlocks, params.threadsPerBlock>>>(devState, dev_partitions, samplingLeftEdgeState, samplingRightEdgeState, dev_acceptances, params);
 				gpuErrchk( cudaPeekAtLastError() );
 				gpuErrchk( cudaDeviceSynchronize() );
 

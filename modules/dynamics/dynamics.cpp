@@ -7,7 +7,7 @@
 #include <Eigen/Dense>
 #include <boost/numeric/odeint.hpp>
 
-#include "dynamics.h"
+#include "../dynamics.h"
 
 
 namespace timeEvolution{

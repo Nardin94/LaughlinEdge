@@ -25,9 +25,9 @@
 
 #include "./modules/complex_numbers.h"
 #include "./modules/tensors.h"
-#include "./modules/integer_partitions.h"
 #include "./modules/edge_montecarlo.h"
 #include "./modules/dynamics.h"
+#include "./modules/green_function.h"
 
 #include "./modules/sys_params.h"
 
@@ -101,6 +101,22 @@ int main(){
 
 	timeEvolution::edgeDensityResponse_compute( sys_params::particlesNumber, sys_params::inverseFilling, angular_momenta, temporal_profile, TMax, save_step ); // By default parameter imports data from 0.tsv
 
+	//*/
+
+	// OCCUPATION NUMBERS SNIPPET
+	//*
+	int angularMomentumSector = 0;
+
+	// First, compute the metric: metric_lr = <left|right>
+	edgeMC::monteCarloParameters sp1; // Default parameters (number of samples etc)
+	sp1.setMCSamples(200000);
+	cmatrix<double> metric = edgeMC::metric_compute(sp1, angularMomentumSector);
+
+	// Then the occupation numbers <left|n_l|right>; the metric is used to normalize the results
+	greenFunctionMC::monteCarloParameters sp2;
+	sp2.setMCSamples(200000);
+
+	greenFunctionMC::occupation_numbers_compute(sp2, angularMomentumSector, metric, 0);
 	//*/
 
 	return 0;

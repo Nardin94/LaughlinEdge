@@ -1,6 +1,6 @@
-#include "./edge_montecarlo.h"
+#include "../green_function.h"
 
-namespace edgeMC {
+namespace greenFunctionMC {
 
 	__global__ void initializeRandom(curandState *state, uint seed){
 		int tid = threadIdx.x + blockIdx.x * blockDim.x;
