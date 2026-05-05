@@ -14,7 +14,7 @@ Main features:
 3) Spectral function
         (coming soon)
 4) Occupation numbers
-        (coming soon)   
+        greenFunctionMC::occupation_numbers_compute
 5) Matrix elements of an excitation
         edgeMC::excitationResponse_compute
 6) Time evolution in response to an excitation
