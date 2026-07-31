@@ -166,10 +166,21 @@ namespace greenFunctionMC{
 												monteCarloParameters params,
 												results *dev_results );
 
+	void on_compute(	monteCarloParameters &params,
+						int angular_momentum_sector,
+						cmatrix<double> *metric,
+						int fileNumber = 0); // The output is saved to a file named fileNumber_l=#.tsv, where # is the angular momentum of the number operator a^\dagger_l a_l
+
+
+	void occupation_numbers_compute(	monteCarloParameters &params,
+										int angular_momentum_sector,
+										int fileNumber = 0); // Returns un-normalized occupation numbers (they should be normalized with the metric). This function, and its overloaded counterpart below, call on_compute
+
+
 	void occupation_numbers_compute(	monteCarloParameters &params,
 										int angular_momentum_sector,
 										cmatrix<double> &metric,
-										int fileNumber = 0 ); // The output is saved to a file named fileNumber_l=#.tsv, where # is the angular momentum of the number operator a^\dagger_l a_l
+										int fileNumber = 0); // Overloaded with the addition of the metric: occupation numbers are this time correctly normalized						
 
 }
 

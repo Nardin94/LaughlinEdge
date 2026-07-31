@@ -35,16 +35,19 @@ int main(){
 	
 	// SPECTRUM CALCULATION SNIPPET 
 	/*
-	int angularMomentumSector = 3;
+	int angularMomentumSector = 12;
 
 	edgeMC::monteCarloParameters simulationParameters; // Default parameters (number of samples etc)
-	simulationParameters.setMCSamples(20000);
+	simulationParameters.setMCSamples(12200);
 
-	std::vector<double> evals = edgeMC::spectrum_compute(simulationParameters, angularMomentumSector, true, 0);
+	for(int rep=0; rep<100; rep++){
+		std::cout << "Collecting the samples #" << rep << std::endl;
+		std::vector<double> evals = edgeMC::spectrum_compute(simulationParameters, angularMomentumSector, true, rep);
 
-	std::cout << "The spectrum within the L = " << angularMomentumSector << " sector: " << std::endl;
-	for(auto e : evals){
-		std::cout << "\tE = " << e << std::endl;
+		std::cout << "The spectrum within the L = " << angularMomentumSector << " sector: " << std::endl;
+		for(auto e : evals){
+			std::cout << "\tE = " << e << std::endl;
+		}
 	}
 	//*/
 	
@@ -105,18 +108,16 @@ int main(){
 
 	// OCCUPATION NUMBERS SNIPPET
 	//*
-	int angularMomentumSector = 0;
 
-	// First, compute the metric: metric_lr = <left|right>
-	edgeMC::monteCarloParameters sp1; // Default parameters (number of samples etc)
-	sp1.setMCSamples(200000);
-	cmatrix<double> metric = edgeMC::metric_compute(sp1, angularMomentumSector);
+	int angularMomentumSector = 12;
 
-	// Then the occupation numbers <left|n_l|right>; the metric is used to normalize the results
 	greenFunctionMC::monteCarloParameters sp2;
-	sp2.setMCSamples(200000);
+	sp2.setMCSamples(12200);
 
-	greenFunctionMC::occupation_numbers_compute(sp2, angularMomentumSector, metric, 0);
+	for(int rep=0; rep<100; rep++){
+		std::cout << "Collecting the samples #" << rep << std::endl;
+		greenFunctionMC::occupation_numbers_compute(sp2, angularMomentumSector, rep);
+	}
 	//*/
 
 	return 0;

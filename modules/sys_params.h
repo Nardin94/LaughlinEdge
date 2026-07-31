@@ -13,9 +13,9 @@ namespace sys_params {
     __device__ constexpr float RCl_reciprocal = 0.100000;
     __device__ constexpr float R0_reciprocal = 0.200000;
 
-    __device__ constexpr int ansatzExtendedMaxDegree = 11;
+    __device__ constexpr int ansatzExtendedMaxDegree = 13;
     __device__ constexpr int ansatzMaxPartitionSize = 5;
-    __device__ constexpr int ansatzSubspaceDimension = 50;
+    __device__ constexpr int ansatzSubspaceDimension = 80;
 
     __device__ constexpr int ansatzMultipletSize = 5;
 

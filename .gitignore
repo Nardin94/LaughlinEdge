@@ -4,3 +4,6 @@ build/**
 output/
 
 bin/
+
+logs/
+run.sh

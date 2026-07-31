@@ -226,7 +226,7 @@ namespace greenFunctionMC {
 			}
 			
 			// Update the results
-			atomicAdd_block(&dev_results->acceptance[block_id], local_acceptance / ( params.MCSamples * sys_params::particlesNumber));
+			atomicAdd_block(&dev_results->acceptance[block_id], (double)local_acceptance / ( params.MCSamples * sys_params::particlesNumber));
 
 			double scale_factor = 1. / params.MCSamples;
 			for(int l=0; l<sys_params::angularMomentumCutoff; l++){	
@@ -306,11 +306,11 @@ namespace greenFunctionMC {
 		}
 	
 
-		void occupation_numbers_compute( 	monteCarloParameters &params, // The parameters for the simulation
-											int angular_momentum_sector, // The angular momentum sector
-											cmatrix<double> &metric, // The metric
-											int fileNumber
-										){
+		void on_compute( 	monteCarloParameters &params, // The parameters for the simulation
+							int angular_momentum_sector, // The angular momentum sector
+							cmatrix<double> *metric, // The metric
+							int fileNumber
+						){
 			
 			// First things first: set the injected angular momentum.
 			// The highest possibly occupied state is at angular momentum m(N-1)+injectedAngularMomentum
@@ -434,8 +434,15 @@ namespace greenFunctionMC {
 					sum += averaged_results->occupationNumbers[l];
 				}
 
-				for(int l=0; l<sys_params::angularMomentumCutoff; l++){
-					occupation_matrix_elements(left_edgeMode, right_edgeMode, l) = averaged_results->occupationNumbers[l] / sum * sys_params::particlesNumber * metric(left_edgeMode, right_edgeMode);
+				if( metric ){ // If it is not the nullptr
+					for(int l=0; l<sys_params::angularMomentumCutoff; l++){
+						occupation_matrix_elements(left_edgeMode, right_edgeMode, l) = averaged_results->occupationNumbers[l] / sum * sys_params::particlesNumber * (*metric)(left_edgeMode, right_edgeMode);
+					}					 
+				}
+				else{
+					for(int l=0; l<sys_params::angularMomentumCutoff; l++){
+						occupation_matrix_elements(left_edgeMode, right_edgeMode, l) = averaged_results->occupationNumbers[l] / sum * sys_params::particlesNumber;
+					}						
 				}
 
 				// 9) Free the device and the temporary variables on the host			
@@ -507,7 +514,13 @@ namespace greenFunctionMC {
 			// Save if asked
 			std::cout << "Saving the matrices (you need post-processing to rotate onto the eigenvector basis and eventually to compute statistical errorbars)\n\n";
 			// Create directory structure
-			std::string dir_path = fmt::format("../output/N={}_m={}/dL={}/Statistics/OccupationNumbers", sys_params::particlesNumber, sys_params::inverseFilling, angular_momentum_sector );
+			std::string dir_path;
+			if( metric ){ // If it is not the nullptr
+				dir_path = fmt::format("../output/N={}_m={}/dL={}/Statistics/OccupationNumbers_normalized", sys_params::particlesNumber, sys_params::inverseFilling, angular_momentum_sector );
+			}
+			else{
+				dir_path = fmt::format("../output/N={}_m={}/dL={}/Statistics/OccupationNumbers_not_normalized", sys_params::particlesNumber, sys_params::inverseFilling, angular_momentum_sector );
+			}
 			std::filesystem::create_directories(dir_path);
 
 			// Create the output file
@@ -529,6 +542,25 @@ namespace greenFunctionMC {
 
 			return;			
 		}
+
+
+
+		void occupation_numbers_compute(	monteCarloParameters &params,
+											int angular_momentum_sector,
+											cmatrix<double> &metric,
+											int fileNumber){
+
+			on_compute(params, angular_momentum_sector, &metric, fileNumber);
+
+		}											
+
+		void occupation_numbers_compute(	monteCarloParameters &params,
+											int angular_momentum_sector,
+											int fileNumber){
+
+			on_compute(params, angular_momentum_sector, nullptr, fileNumber);
+		}
+
 
 
 }

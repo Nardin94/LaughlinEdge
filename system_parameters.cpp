@@ -14,9 +14,9 @@ double confinementStrength = 1.; // Strength parameter of the confining potentia
 
 // These are ansatz-values. In any realistic simulation they will not exceed these values. There is a bit of overhead in having them larger than the actual values - but the code will be much faster (avoids using global memory)
 // If they are too-small, the mcedge code will complain at run-time.
-int ansatzMaxDegree = 10; // With this we can arrive up to L=10
+int ansatzMaxDegree = 12; // With this we can arrive up to L=10
 int ansatzMaxPartitionSize = 5; // The longest partition at a given L has K = floor[ (sqrt(1+8L)-1)/2 ] distinct elements. With K=4 we can cover all the L up to 15 (excluded)
-int ansatzSubspaceDimension = 50; // The size of the edge Hilbert space should be smaller than this parameter
+int ansatzSubspaceDimension = 80; // The size of the edge Hilbert space should be smaller than this parameter
 
 int ansatzMultipletSize = 5; // The number of angular momentum sectors considered when solving the dynamics
 
