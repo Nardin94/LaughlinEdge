@@ -1,11 +1,6 @@
 #include "../edge_montecarlo.h"
 #include "../generalized_eigenproblem.h"
 
-#include <filesystem>
-#include <string>
-#include <fstream>
-#include <fmt/core.h>
-
 namespace edgeMC {
 
 	////////////////////////////////////////////////////////////////////

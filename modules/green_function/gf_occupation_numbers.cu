@@ -1,11 +1,6 @@
 #include "../green_function.h"
 #include "../factorial_logs.h"
 
-#include <filesystem>
-#include <string>
-#include <fstream>
-#include <fmt/core.h>
-
 namespace greenFunctionMC {
 
 	////////////////////////////////////////////////////////////////////

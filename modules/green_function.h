@@ -2,6 +2,10 @@
 #define GFMC_H
 
 #include <vector>
+#include <filesystem>
+#include <string>
+#include <fstream>
+#include <fmt/core.h>
 
 #include "./complex_numbers.h"
 #include "./tensors.h"

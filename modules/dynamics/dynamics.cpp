@@ -1,14 +1,4 @@
-#include <iostream>
-#include <filesystem>
-#include <fstream>
-#include <fmt/core.h>
-#include <vector>
-#include <complex>
-#include <Eigen/Dense>
-#include <boost/numeric/odeint.hpp>
-
 #include "../dynamics.h"
-
 
 namespace timeEvolution{
 

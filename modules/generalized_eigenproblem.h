@@ -2,7 +2,9 @@
 #include "./tensors.h"
 
 #include <vector>
+#include <complex>
 #include <Eigen/Dense>
+#include <Eigen/Eigenvalues>
 // #define EIGEN_NO_CUDA 1
 
 #ifndef GENEIG_H

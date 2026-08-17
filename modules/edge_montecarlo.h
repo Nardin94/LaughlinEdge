@@ -3,6 +3,13 @@
 #define EDGEMC_H
 
 #include <vector>
+#include <complex>
+#include <Eigen/Dense>
+#include <Eigen/Eigenvalues>
+#include <filesystem>
+#include <string>
+#include <fstream>
+#include <fmt/core.h>
 
 #include "./complex_numbers.h"
 #include "./tensors.h"

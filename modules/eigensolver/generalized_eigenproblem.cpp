@@ -1,10 +1,5 @@
 #include "../generalized_eigenproblem.h"
 
-#include <complex>
-#include <Eigen/Dense>
-#include <Eigen/Eigenvalues>
-// #define EIGEN_NO_CUDA 1
-
 namespace ges {
 
 	using namespace std::complex_literals;
