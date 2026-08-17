@@ -1,9 +1,9 @@
 build/**
 !build/.gitkeep
 
-output/
-
 bin/
 
 logs/
-run.sh
+
+LaughlinEdge
+eigen-3.4/

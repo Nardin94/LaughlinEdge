@@ -152,9 +152,9 @@ namespace timeEvolution{
 										double end_time, double save_step, 
 										int fileNumber){		
 		// Import the stuff
-		std::string dir_path_M = fmt::format("../output/N={}_m={}/ExternalExcitation/Statistics/Metric", particlesNumber, inverseFilling );
-		std::string dir_path_H = fmt::format("../output/N={}_m={}/ExternalExcitation/Statistics/Hamiltonian", particlesNumber, inverseFilling );
-		std::string dir_path_U = fmt::format("../output/N={}_m={}/ExternalExcitation/Statistics/ExcitationPotential", particlesNumber, inverseFilling );
+		std::string dir_path_M = fmt::format("./output/N={}_m={}/ExternalExcitation/Statistics/Metric", particlesNumber, inverseFilling );
+		std::string dir_path_H = fmt::format("./output/N={}_m={}/ExternalExcitation/Statistics/Hamiltonian", particlesNumber, inverseFilling );
+		std::string dir_path_U = fmt::format("./output/N={}_m={}/ExternalExcitation/Statistics/ExcitationPotential", particlesNumber, inverseFilling );
 
 		std::string file_name = fmt::format("{}.tsv", fileNumber);
 
@@ -256,7 +256,7 @@ namespace timeEvolution{
 		std::vector<Eigen::MatrixXcd> rho_l(angularMomentumSectors);
 
 		for(uint l=0; l<angularMomentumSectors; l++){
-			std::string dir_path_rhol = fmt::format("../output/N={}_m={}/ExternalExcitation/Statistics/EdgeDenstiy_FourierTransform/dL={}", particlesNumber, inverseFilling, angular_momenta[l] );
+			std::string dir_path_rhol = fmt::format("./output/N={}_m={}/ExternalExcitation/Statistics/EdgeDenstiy_FourierTransform/dL={}", particlesNumber, inverseFilling, angular_momenta[l] );
 			
 			rho_l[l] = read_edgeDensity_matrix( dir_path_rhol + "/" + file_name );
 		}
@@ -295,7 +295,7 @@ namespace timeEvolution{
 		std::vector<observer::results> output = obs.getResults();
 
         for( uint l=0; l<angularMomentumSectors; l++){
-            std::string dir_path_out = fmt::format("../output/N={}_m={}/ExternalExcitation/Statistics/edgeDynamics/dL={}", particlesNumber, inverseFilling, angular_momenta[l] );
+            std::string dir_path_out = fmt::format("./output/N={}_m={}/ExternalExcitation/Statistics/edgeDynamics/dL={}", particlesNumber, inverseFilling, angular_momenta[l] );
             std::filesystem::create_directories(dir_path_out);           
             std::ofstream out_file( dir_path_out + "/" + file_name );
 

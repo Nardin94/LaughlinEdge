@@ -371,7 +371,7 @@ namespace edgeMC {
 			if( saveOutput ){
 				std::cout << "Saving the matrices (you can post-process to compute statistical errorbars)\n";
 				// Create directory structure
-				std::string dir_path_M = fmt::format("../output/N={}_m={}/dL={}/Statistics/Metric", sys_params::particlesNumber, sys_params::inverseFilling, angular_momentum_sector );
+				std::string dir_path_M = fmt::format("./output/N={}_m={}/dL={}/Statistics/Metric", sys_params::particlesNumber, sys_params::inverseFilling, angular_momentum_sector );
 				std::filesystem::create_directories(dir_path_M);
 
 				// Create the output files

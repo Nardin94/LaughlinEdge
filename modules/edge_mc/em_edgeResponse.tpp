@@ -559,13 +559,13 @@ namespace edgeMC {
 		// Save 
 		std::cout << "Saving the matrices (you can post-process to compute statistical errorbars)\n";
 
-		std::string dir_path_H = fmt::format("../output/N={}_m={}/ExternalExcitation/Statistics/Hamiltonian", sys_params::particlesNumber, sys_params::inverseFilling );
+		std::string dir_path_H = fmt::format("./output/N={}_m={}/ExternalExcitation/Statistics/Hamiltonian", sys_params::particlesNumber, sys_params::inverseFilling );
 		std::filesystem::create_directories(dir_path_H);
 
-		std::string dir_path_M = fmt::format("../output/N={}_m={}/ExternalExcitation/Statistics/Metric", sys_params::particlesNumber, sys_params::inverseFilling );
+		std::string dir_path_M = fmt::format("./output/N={}_m={}/ExternalExcitation/Statistics/Metric", sys_params::particlesNumber, sys_params::inverseFilling );
 		std::filesystem::create_directories(dir_path_M);
 
-		std::string dir_path_U = fmt::format("../output/N={}_m={}/ExternalExcitation/Statistics/ExcitationPotential", sys_params::particlesNumber, sys_params::inverseFilling );
+		std::string dir_path_U = fmt::format("./output/N={}_m={}/ExternalExcitation/Statistics/ExcitationPotential", sys_params::particlesNumber, sys_params::inverseFilling );
 		std::filesystem::create_directories(dir_path_U);  
 
 		std::string file_name = fmt::format("{}.tsv", fileNumber);
@@ -582,7 +582,7 @@ namespace edgeMC {
 		}
         
         for( int J=0; J<params.numberOfSectors; J++){
-            std::string dir_path_RCS = fmt::format("../output/N={}_m={}/ExternalExcitation/Statistics/EdgeDenstiy_FourierTransform/dL={}", sys_params::particlesNumber, sys_params::inverseFilling, angular_momentum_sectors[J] );
+            std::string dir_path_RCS = fmt::format("./output/N={}_m={}/ExternalExcitation/Statistics/EdgeDenstiy_FourierTransform/dL={}", sys_params::particlesNumber, sys_params::inverseFilling, angular_momentum_sectors[J] );
             std::filesystem::create_directories(dir_path_RCS);           
             std::ofstream outRCS( dir_path_RCS + "/" + file_name );
 

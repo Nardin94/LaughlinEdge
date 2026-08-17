@@ -457,16 +457,16 @@ namespace edgeMC {
 			if( saveOutput ){
 				std::cout << "Saving the matrices (you can post-process to compute statistical errorbars)\n\n";
 				// Create directory structure
-				std::string dir_path_H = fmt::format("../output/N={}_m={}/dL={}/Statistics/Hamiltonian", sys_params::particlesNumber, sys_params::inverseFilling, angular_momentum_sector );
+				std::string dir_path_H = fmt::format("./output/N={}_m={}/dL={}/Statistics/Hamiltonian", sys_params::particlesNumber, sys_params::inverseFilling, angular_momentum_sector );
 				std::filesystem::create_directories(dir_path_H);
 
-				std::string dir_path_M = fmt::format("../output/N={}_m={}/dL={}/Statistics/Metric", sys_params::particlesNumber, sys_params::inverseFilling, angular_momentum_sector );
+				std::string dir_path_M = fmt::format("./output/N={}_m={}/dL={}/Statistics/Metric", sys_params::particlesNumber, sys_params::inverseFilling, angular_momentum_sector );
 				std::filesystem::create_directories(dir_path_M);
 
-				std::string dir_path_VC = fmt::format("../output/N={}_m={}/dL={}/Statistics/cosine_excitation", sys_params::particlesNumber, sys_params::inverseFilling, angular_momentum_sector );
+				std::string dir_path_VC = fmt::format("./output/N={}_m={}/dL={}/Statistics/cosine_excitation", sys_params::particlesNumber, sys_params::inverseFilling, angular_momentum_sector );
 				std::filesystem::create_directories(dir_path_VC);
 
-				std::string dir_path_VS = fmt::format("../output/N={}_m={}/dL={}/Statistics/sine_excitation", sys_params::particlesNumber, sys_params::inverseFilling, angular_momentum_sector );
+				std::string dir_path_VS = fmt::format("./output/N={}_m={}/dL={}/Statistics/sine_excitation", sys_params::particlesNumber, sys_params::inverseFilling, angular_momentum_sector );
 				std::filesystem::create_directories(dir_path_VS);
 
 				// Create the output files

@@ -516,10 +516,10 @@ namespace greenFunctionMC {
 			// Create directory structure
 			std::string dir_path;
 			if( metric ){ // If it is not the nullptr
-				dir_path = fmt::format("../output/N={}_m={}/dL={}/Statistics/OccupationNumbers_normalized", sys_params::particlesNumber, sys_params::inverseFilling, angular_momentum_sector );
+				dir_path = fmt::format("./output/N={}_m={}/dL={}/Statistics/OccupationNumbers_normalized", sys_params::particlesNumber, sys_params::inverseFilling, angular_momentum_sector );
 			}
 			else{
-				dir_path = fmt::format("../output/N={}_m={}/dL={}/Statistics/OccupationNumbers_not_normalized", sys_params::particlesNumber, sys_params::inverseFilling, angular_momentum_sector );
+				dir_path = fmt::format("./output/N={}_m={}/dL={}/Statistics/OccupationNumbers_not_normalized", sys_params::particlesNumber, sys_params::inverseFilling, angular_momentum_sector );
 			}
 			std::filesystem::create_directories(dir_path);
 
