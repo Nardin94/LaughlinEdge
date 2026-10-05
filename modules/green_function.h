@@ -6,6 +6,9 @@
 #include <string>
 #include <fstream>
 #include <fmt/core.h>
+#include <random>
+#include <chrono>
+#include <unistd.h>
 
 #include "./complex_numbers.h"
 #include "./tensors.h"
@@ -147,7 +150,8 @@ namespace greenFunctionMC{
 	};
 
 	// Seed for the random numbers
-	__global__ void initializeRandom(curandState *state, uint seed);
+	unsigned long long makeSeed();
+	__global__ void initializeRandom(curandState *state, unsigned long long seed);
 	
 	// Acceptance bisection (determine the optimal random MC step)
 	__global__ void mcmc_acceptanceBisection(	curandState *state, 

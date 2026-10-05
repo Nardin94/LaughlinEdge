@@ -201,8 +201,7 @@ namespace edgeMC {
 			gpuErrchk( cudaDeviceSynchronize() );
 
 			// Generate the random seed for the random number generation
-			srand(time(NULL));
-			uint seed = rand();
+			unsigned long long seed = makeSeed();
 			
 			//  Random number generation stuff is here initialized
 			curandState *devState;  
